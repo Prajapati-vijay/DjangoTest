@@ -1,0 +1,51 @@
+<!-- bill.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        #bill {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Bill</h1>
+    <div id="bill">
+        <h2>Selected Products:</h2>
+        <ul>
+            {% for product in products %}
+                <li>{{ product.name }} - ${{ product.price }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Total Price: ${{ total_price }}</h2>
+    </div>
+</body>
+</html>
