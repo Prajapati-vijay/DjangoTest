@@ -24,7 +24,7 @@ router.register(r'api', ProductViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('', Home),
     path('login/',login_user,name='login'),
     path('list/',show),
     path('update-product/<int:product_id>/', update_product, name='update_product'),  
