@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
+def Home(request):
+   return redirect("/login") 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
