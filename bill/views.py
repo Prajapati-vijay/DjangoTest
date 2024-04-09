@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets,permissions
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Product
 from .serializers import ProductSerializer
@@ -12,6 +12,7 @@ def Home(request):
    return redirect("/login") 
 
 class ProductViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
@@ -33,13 +34,13 @@ def login_user(request):
     else:
         return render(request, 'login.html')   
     
-
+@login_required
 def show(request):
     data=Product.objects.all()
     return render(request,"ShowProduct.html",{"data":data})     
 
 
-
+@login_required
 def update_product(request, product_id):
     if request.method == 'GET':
         try:
@@ -59,6 +60,8 @@ def update_product(request, product_id):
         product.save()
         return redirect('/list')
 
+
+@login_required
 def delete_product(request, product_id):
     if request.method == 'GET':
         try:
@@ -68,7 +71,7 @@ def delete_product(request, product_id):
         except Product.DoesNotExist:
             return HttpResponse("Product does not exist.")
     
-
+@login_required
 def add_product(request):
     if request.method == 'GET':
         # Render the add product form
@@ -84,7 +87,7 @@ def add_product(request):
         return redirect('/list/')
     
 
-
+@login_required
 def bill_generator(request):
     if request.method == 'GET':
         # Fetch all products to populate the select dropdown
