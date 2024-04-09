@@ -14,14 +14,14 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
 
 
-def login(request):
+def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         print(username,password)
         if user is not None:
-            # login(request,user) 
+            login(request,user) 
             print(user,password)
             # Redirect to a success page or wherever you want
             return redirect('/list/')  # Assuming 'dashboard' is the name of your dashboard URL
